@@ -1,8 +1,5 @@
 package jp.co.sss.crud.controller;
 
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import jp.co.sss.crud.form.LoginForm;
 import jp.co.sss.crud.repository.EmployeeRepository;
 import jp.co.sss.crud.service.LoginService;
@@ -33,8 +32,13 @@ public class IndexController {
 		if (result.hasErrors()) {
 			return "index";
 		}
-		String path = loginService.checkLogin(loginForm);			
-		return path;
+		if (loginService.checkLogin(loginForm)) {
+			return "redirect:/list";
+		} else {
+			model.addAttribute("loginError", "社員ID、またはパスワードが間違っています。");
+			return "index";
+		}
+
 	}
 
 	@RequestMapping(path = "/logout", method = RequestMethod.GET)

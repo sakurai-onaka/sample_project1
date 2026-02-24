@@ -17,7 +17,7 @@ public class ListService {
 	public List<Employee> findEmpByDept(Integer deptId) {
 		Department dept = new Department();
 		dept.setDeptId(deptId);
-		List<Employee> empList = employeeRepository.findByDepartment(dept);
+		List<Employee> empList = employeeRepository.findByDepartmentOrderByEmpIdAsc(dept);
 		return empList;
 	}
 

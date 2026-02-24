@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  th:fragment="layout(body)">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
+	</head>
+	<body>   
+	 	<header th:replace="~{common/header :: layout-header}"></header> 
+		 <article id="container"> 
+			 <main id="main" th:replace="${body}"></main> 
+ 		</article> 
+		 <footer th:replace="~{common/footer :: layout-footer}"></footer> 
+</body>
+</html>

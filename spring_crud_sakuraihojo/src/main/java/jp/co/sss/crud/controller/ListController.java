@@ -19,14 +19,14 @@ public class ListController {
 
 	@RequestMapping(path = "/list", method = RequestMethod.GET)
 	public String findAll(Model model) {
-		model.addAttribute("empList", BeanCopy.empListToEmpBeanList(employeeRepository.findAll()));
+		model.addAttribute("empList", BeanCopy.empListToEmpBeanList(employeeRepository.findAllByOrderByEmpIdAsc()));
 		return "list/list";
 	}
 
 	@RequestMapping(path = "/list/empName", method = RequestMethod.GET)
 	public String findByEmpName(String empName, Model model) {
 		model.addAttribute("empList",
-				BeanCopy.empListToEmpBeanList(employeeRepository.findByEmpNameContaining(empName)));
+				BeanCopy.empListToEmpBeanList(employeeRepository.findByEmpNameContainingOrderByEmpIdAsc(empName)));
 		return "list/list";
 	}
 
