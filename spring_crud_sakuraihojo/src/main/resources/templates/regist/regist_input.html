@@ -10,10 +10,10 @@
 		<article class="main">
 			
 	<h3>社員登録入力画面</h3>
-    <div class="update" th:object="${employeeForm}">
+    <div class="update" th:object="${employeeBean}">
       <form th:action="@{/regist/check}" method="post">
         <!-- エラーメッセージの出力 -->
-       	<p>
+       	<p th:object="${employeeForm}">
 			<span th:errors="*{empPass}"></span><br> 
 			<span th:errors="*{empName}"></span><br>
 			<span th:errors="*{address}"></span><br>
@@ -64,10 +64,10 @@
           <div class="label">部署名：</div>
           <div class="input">
             <select id="deptId" name="deptId">
-              <option  th:if="*{deptId == null}" value="1" selected="selected">営業部</option>
-              <option  th:unless="*{deptId == null}" value="1" th:selected="*{deptId == 1}">営業部</option>
-              <option value="2" th:selected="*{deptId == 2}">経理部</option>
-              <option value="3" th:selected="*{deptId == 3}">総務部</option>
+              <option  th:if="*{department.deptId == null}" value="1" selected="selected">営業部</option>
+              <option  th:unless="*{department.deptId == null}" value="1" th:selected="*{department.deptId == 1}">営業部</option>
+              <option value="2" th:selected="*{department.deptId == 2}">経理部</option>
+              <option value="3" th:selected="*{department.deptId == 3}">総務部</option>
             </select>
           </div>
         </div>

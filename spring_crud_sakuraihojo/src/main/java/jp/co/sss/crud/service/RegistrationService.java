@@ -3,6 +3,7 @@ package jp.co.sss.crud.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.sss.crud.bean.EmployeeBean;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.form.EmployeeForm;
@@ -15,6 +16,12 @@ public class RegistrationService {
 	EmployeeRepository employeeRepository;
 	@Autowired
 	DepartmentRepository departmentRepository;
+
+	public EmployeeBean createDefaultEmpBean() {
+		EmployeeBean employeeBean = new EmployeeBean();
+		employeeBean.setDepartment(new Department());
+		return employeeBean;
+	}
 
 	public EmployeeForm returnDefaultEmpForm(EmployeeForm employeeForm) {
 		employeeForm.setGender(1);
@@ -35,5 +42,5 @@ public class RegistrationService {
 		System.out.println(dept);
 		employeeRepository.save(emp);
 	}
-	
+
 }

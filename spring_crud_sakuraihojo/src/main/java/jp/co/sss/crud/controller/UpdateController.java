@@ -22,6 +22,9 @@ public class UpdateController {
 
 	@RequestMapping(path = "/update/input", method = RequestMethod.GET)
 	public String inputUpdate(Integer empId, @ModelAttribute EmployeeForm employeeForm, Model model) {
+		if (empId == null) {
+			return "redirect:/list";
+		}
 		EmployeeBean empBean = updateService.getUpdateEmpInfo(empId);
 		model.addAttribute("employeeBean", empBean);
 		return "update/update_input";

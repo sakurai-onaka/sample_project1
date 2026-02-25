@@ -19,6 +19,9 @@ public class DeleteController {
 
 	@RequestMapping(path = "/delete/check", method = RequestMethod.GET)
 	public String checkDelete(Integer empId, Model model) {
+		if (empId == null) {
+			return "redirect:/list";
+		}
 		EmployeeBean empBean = deleteService.getUpdateEmpInfo(empId);
 		model.addAttribute("employeeBean", empBean);
 		return "delete/delete_check";
@@ -29,8 +32,8 @@ public class DeleteController {
 		empRepository.deleteById(empId);
 		return "redirect:/delete/complete";
 	}
-	
-	@RequestMapping(path="/delete/complete")
+
+	@RequestMapping(path = "/delete/complete")
 	public String completeDelete(String empId, Model model) {
 		return "delete/delete_complete";
 	}
