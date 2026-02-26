@@ -40,13 +40,13 @@ public class UpdateController {
 	}
 
 	@RequestMapping(path = "/update/do-update", method = RequestMethod.POST)
-	public String doUpdate(EmployeeForm employeeForm) {
+	public String doUpdate(EmployeeForm employeeForm, HttpSession session) {
 		updateService.updateEmployee(employeeForm);
 		return "redirect:/update/complete";
 	}
 
 	@RequestMapping(path = "/update/complete", method = RequestMethod.GET)
-	public String completeUpdate(EmployeeForm employeeForm, HttpSession session) {
+	public String completeUpdate(EmployeeForm employeeForm) {
 		return "update/update_complete";
 	}
 

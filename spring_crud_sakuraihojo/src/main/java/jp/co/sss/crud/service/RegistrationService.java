@@ -39,7 +39,6 @@ public class RegistrationService {
 		emp.setAuthority(employeeForm.getAuthority());
 		Department dept = departmentRepository.getReferenceById(employeeForm.getDeptId());
 		emp.setDepartment(dept);
-		System.out.println(dept);
 		employeeRepository.save(emp);
 	}
 

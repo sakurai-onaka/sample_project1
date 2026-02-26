@@ -10,17 +10,17 @@ public class EmployeeForm {
 	private Integer empId;
 
 	@NotBlank
-	@Size(max = 16)
+	@Size(min=1,max = 16)
 	private String empPass;
 
 	@NotBlank
-	@Size(max = 30)
+	@Size(min=1,max = 30)
 	private String empName;
 
 	private Integer gender;
 
 	@NotBlank
-	@Size(max = 60)
+	@Size(min=1,max = 60)
 	private String address;
 
 	@NotNull

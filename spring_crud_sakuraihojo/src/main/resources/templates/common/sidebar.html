@@ -21,9 +21,9 @@
 
 	     <span>
 	      	<select name="deptId">
-	        	<option value="1" selected="">営業部</option>
-	        	<option value="2">経理部</option>
-	        	<option value="3">総務部</option>
+	        	<th:block th:each="dept:${session.deptList}">
+      				<option th:value="${dept.deptId}" th:text="${dept.deptName}"></option>
+    			</th:block>
 	      	</select>
 	     </span>
 

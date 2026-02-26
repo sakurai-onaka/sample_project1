@@ -2,9 +2,11 @@ package jp.co.sss.crud.form;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class LoginForm {
-	@Max(value=999)
+	@Max(value=99999)
+	@NotNull
 	private Integer empId;
 	
 	@NotBlank

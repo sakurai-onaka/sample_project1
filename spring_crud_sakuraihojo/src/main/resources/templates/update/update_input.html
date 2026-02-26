@@ -12,18 +12,18 @@
     <div class="update" th:object="${employeeBean}">
       <form th:action="@{/update/check}" method="post">
         <!-- エラーメッセージの出力 -->
-       	<p th:object="${employeeForm}">
-			<span th:errors="*{empPass}"></span><br> 
-			<span th:errors="*{empName}"></span><br>
-			<span th:errors="*{address}"></span><br>
-			<span th:errors="*{birthday}"></span><br>
-		</p>
+       	<div th:object="${employeeForm}">
+			<p th:errors="*{empPass}"></p> 
+			<p th:errors="*{empName}"></p>
+			<p th:errors="*{address}"></p>
+			<p th:errors="*{birthday}"></p>
+		</div>
 
 
         <div class="form">
           <div class="label">パスワード：</div>
           <div class="input">
-            <input type="password" id="empPass" name="empPass" th:value="*{empPass}">
+            <input type="password" id="empPass" name="empPass">
           </div>
         </div>
         <div class="form">
@@ -63,12 +63,11 @@
         <div class="form">
           <div class="label">部署名：</div>
           <div class="input">
-            <select id="deptId" name="deptId">
-              <option  th:if="*{department.deptId == null}" value="1" selected="selected">営業部</option>
-              <option  th:unless="*{department.deptId == null}" value="1" th:selected="*{department.deptId == 1}">営業部</option>
-              <option value="2" th:selected="*{department.deptId == 2}">経理部</option>
-              <option value="3" th:selected="*{department.deptId == 3}">総務部</option>
-            </select>
+          	<select id="deptId" name="deptId">
+				<th:block th:each="dept:${session.deptList}">
+      				<option th:value="${dept.deptId}" th:text="${dept.deptName}" th:selected="${employeeBean.department.deptId == dept.deptId}"></option>
+    			</th:block>
+    		</select>
           </div>
         </div>
         <div class="form">

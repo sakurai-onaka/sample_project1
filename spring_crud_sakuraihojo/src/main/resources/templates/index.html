@@ -13,11 +13,9 @@
 	<div>
 		<h3>ログイン画面</h3>
 		<!-- エラーメッセージの出力(入力チェック) -->
-		<p>
-			<span th:errors="${loginForm.empId}"></span><br> 
-			<span th:errors="${loginForm.empPass}"></span><br>
-			<span th:text="${loginError}"></span><br>
-		</p>
+			<p th:errors="${loginForm.empId}"></p>
+			<p th:errors="${loginForm.empPass}"></p>
+			<p th:text="${loginError}"></p>
 		<!-- エラーメッセージの出力(存在チェック) -->
 		<div class="login_form">
 			<form method="post" th:action="@{/login}">

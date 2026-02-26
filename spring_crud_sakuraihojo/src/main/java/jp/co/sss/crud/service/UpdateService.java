@@ -3,6 +3,7 @@ package jp.co.sss.crud.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
 import jp.co.sss.crud.bean.EmployeeBean;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
@@ -17,6 +18,8 @@ public class UpdateService {
 	EmployeeRepository employeeRepository;
 	@Autowired
 	DepartmentRepository departmentRepository;
+	@Autowired
+	HttpSession session;
 
 	public EmployeeBean getUpdateEmpInfo(Integer empId) {
 		Employee emp = employeeRepository.getReferenceById(empId);
@@ -36,7 +39,10 @@ public class UpdateService {
 		emp.setAuthority(employeeForm.getAuthority());
 		Department dept = departmentRepository.getReferenceById(employeeForm.getDeptId());
 		emp.setDepartment(dept);
-		System.out.println(dept);
-		employeeRepository.save(emp);
+		Employee updateEmp = employeeRepository.save(emp);
+		Employee loginEmp = (Employee) session.getAttribute("loginUser");
+		if (updateEmp.getEmpId() == loginEmp.getEmpId()) {
+			session.setAttribute("loginUser", updateEmp);
+		}
 	}
 }
